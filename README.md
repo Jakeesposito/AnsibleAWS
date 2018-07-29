@@ -1,2 +1,4 @@
-# AnsibleAWS
-Install and Configure Ansible on Amazon Web Services (Ubuntu Server 18.0 LTS)
+# Running an Ansible Control Machine on Amazon Web Services
+Install and Configure Ansible on Ubuntu Server 18.04 LTS
+
+1. 

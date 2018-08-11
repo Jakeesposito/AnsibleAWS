@@ -21,16 +21,19 @@ echo VPC ${mag}10.0.0.0/16${end} created with VPC ID ${mag}$VPCID${end}
 
 # Create Subnets in VPC
 echo Creating VPC Client Subnet...
+sleep 3
 aws ec2 create-subnet --vpc-id ${VPCID} --cidr-block 10.0.1.0/24 | jq
 sleep 3
 echo Creating VPC Client Subnet...${grn}[COMPLETE]${end}
 sleep 3
 echo Creating VPC Server Subnet...
+sleep 3
 aws ec2 create-subnet --vpc-id ${VPCID} --cidr-block 10.0.2.0/24 | jq
 sleep 3
 echo Creating VPC Server Subnet...${grn}[COMPLETE]${end}
 sleep 3
 echo Creating VPC Management Subnet...
+sleep 3
 aws ec2 create-subnet --vpc-id ${VPCID} --cidr-block 10.0.3.0/24 | jq
 sleep 3
 echo Creating VPC Management Subnet...${grn}[COMPLETE]${end}
@@ -38,4 +41,4 @@ sleep 3
 echo .
 echo ${mag}Client, Server, and Management Networks Created${end}
 echo .
-sleep 3
+sleep 1

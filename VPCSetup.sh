@@ -31,7 +31,7 @@ sleep 3
 echo Creating VPC Server Subnet...${grn}[COMPLETE]${end}
 sleep 3
 echo Creating VPC Management Subnet...
-aws ec2 create-subnet --vpc-id ${VPCID} --cidr-block 10.0.2.0/24 | jq
+aws ec2 create-subnet --vpc-id ${VPCID} --cidr-block 10.0.3.0/24 | jq
 sleep 3
 echo Creating VPC Management Subnet...${grn}[COMPLETE]${end}
 sleep 3

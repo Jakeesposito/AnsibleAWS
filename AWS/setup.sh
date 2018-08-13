@@ -21,7 +21,7 @@ echo ${mag}Installing jq...${grn}[COMPLETE]${end}
 sleep 3
 
 # Authenticate into AWS
-echo ${mag}Enter Access Keys Below...{end}
+echo ${mag}Enter Access Keys Below...${red}
 aws configure
 echo ${mag}Testing AWS Connection...${end}
 sleep 3

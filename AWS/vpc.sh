@@ -15,6 +15,7 @@ sleep 3
 echo ${mag}Creating Virtual Private Cloud 10.0.0.0/16...${end}${grn}[COMPLETE]${end}
 sleep 2
 echo ${mag}Extracting VPC ID...${end}
+sleep 5
 VPCID=$(aws ec2 describe-vpcs --query 'Vpcs[1].{VPCID:VpcId}' --output text) > /dev/null
 sleep 3
 echo ${mag}VPC ${red}10.0.0.0/16${end} ${mag}created with VPC ID ${red}$VPCID${end}
@@ -40,7 +41,7 @@ echo ${mag}Creating VPC Management Subnet...${grn}[COMPLETE]${end}
 sleep 3
 echo ${mag}...........................................................${end}
 echo ${mag}...........................................................${end}
-echo ${mag}...Client, Server, and Management Networks Created${end}...
+echo ${mag}.....${grn}Client, Server, and Management Networks Created${mag}.......${end}
 echo ${mag}...........................................................${end}
 echo ${mag}...........................................................${end}
 sleep 1

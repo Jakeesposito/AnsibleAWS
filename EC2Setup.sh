@@ -10,20 +10,20 @@ end=$'\e[0m'
 
 #Install AWS CLI and jq
 sudo apt-get update > /dev/null
-echo Installing Amazon Web Services CLI...
+echo ${mag}Installing Amazon Web Services CLI...${end}
 sudo apt-get -y install awscli > /dev/null
 sleep 3
-echo Installing Amazon Web Services CLI...${grn}[COMPLETE]${end}
+echo ${mag}Installing Amazon Web Services CLI...${grn}[COMPLETE]${end}
 sleep 3
-echo Installing jq...
+echo ${mag}Installing jq...${end}
 sudo apt-get -y install jq > /dev/null
-echo Installing jq...${grn}[COMPLETE]${end}
+echo ${mag}Installing jq...${grn}[COMPLETE]${end}
 sleep 3
 
 # Authenticate into AWS
-echo Enter Access Keys Below...
+echo ${mag}Enter Access Keys Below...{end}
 aws configure
-echo Testing AWS Connection...
+echo ${mag}Testing AWS Connection...${end}
 sleep 3
 aws sts get-caller-identity | jq
-
+sleep 1

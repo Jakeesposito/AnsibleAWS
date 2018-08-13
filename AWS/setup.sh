@@ -26,4 +26,10 @@ aws configure
 echo ${mag}Testing AWS Connection...${end}
 sleep 3
 aws sts get-caller-identity | jq
+sleep 3
+echo ${mag}...........................................................${end}
+echo ${mag}...........................................................${end}
+echo ${mag}............${grn}Amazon Web Services Setup Complete${mag}.............${end}
+echo ${mag}...........................................................${end}
+echo ${mag}...........................................................${end}
 sleep 1

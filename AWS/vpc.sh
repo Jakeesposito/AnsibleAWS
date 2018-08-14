@@ -10,15 +10,15 @@ end=$'\e[0m'
 
 # Create VPC and Extract VPCID
 echo ${mag}Creating Virtual Private Cloud 10.0.0.0/16...${end}
+sleep 5
 aws ec2 create-vpc --cidr-block 10.0.0.0/16 > /dev/null
-sleep 3
 echo ${mag}Creating Virtual Private Cloud 10.0.0.0/16...${end}${grn}[COMPLETE]${end}
 sleep 2
 echo ${mag}Extracting VPC ID...${end}
 sleep 5
 VPCID=$(aws ec2 describe-vpcs --query 'Vpcs[1].{VPCID:VpcId}' --output text) > /dev/null
-sleep 3
 echo ${mag}VPC ${red}10.0.0.0/16${end} ${mag}created with VPC ID ${red}$VPCID${end}
+sleep 2
 
 # Create & Attach Internet Gateway
 sleep 3
@@ -28,7 +28,7 @@ sleep 3
 IGWID=$(aws ec2 describe-internet-gateways --query 'InternetGateways[1].{IGWID:InternetGatewayId}' --output text) > /dev/null
 echo ${mag}Creating Internet Gateway...${grn}[COMPLETE]${end}
 sleep 3
-echo ${mag}Attaching Internet Gateway ${red}$IGWID${mag} to VPC ${red}$VPCID{mag}...
+echo ${mag}Attaching Internet Gateway ${red}$IGWID${mag} to VPC ${red}$VPCID${mag}...
 aws ec2 attach-internet-gateway --internet-gateway-id ${IGWID} --vpc-id ${VPCID} --region us-east-2 > /dev/null
 sleep 3
 echo ${mag}Attaching Internet Gateway ${red}$IGWID${mag} to VPC ${red}$VPCID{mag}...${grn}[COMPLETE]${mag}
@@ -54,7 +54,7 @@ sleep 3
 echo ${mag}Creating VPC Management Subnet...${grn}[COMPLETE]${end}
 sleep 3
 
-# Create Route Tables & Routes
+# Create Route Table
 echo ${mag}Creating a Custom Route Table...${end}
 aws ec2 create-route-table --vpc-id ${VPCID} | jq
 sleep 5
@@ -64,6 +64,7 @@ sleep 1
 echo ${mag}Route Table ID = ${red}$RTID${end}
 sleep 3
 
+# Attach Subnets to Route Tables
 
 
 

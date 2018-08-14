@@ -65,7 +65,7 @@ echo ${mag}Route Table ID = ${red}$RTID${end}
 sleep 3
 
 # Attach Subnets to Route Tables
-
+aws ec2 associate-route-table --route-table-id ${RTID} --subnet-id ??
 
 
 

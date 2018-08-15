@@ -15,7 +15,7 @@ aws ec2 create-vpc --cidr-block 10.0.0.0/16 > /dev/null
 echo ${grn}[COMPLETE]${end}
 sleep 2
 echo ${mag}Extracting VPC ID...${end}
-sleep 5
+sleep 10
 VPCID=$(aws ec2 describe-vpcs --query 'Vpcs[1].{VPCID:VpcId}' --output text) > /dev/null
 echo ${mag}VPC ${red}10.0.0.0/16${end} ${mag}created with VPC ID ${red}$VPCID${end}
 sleep 2

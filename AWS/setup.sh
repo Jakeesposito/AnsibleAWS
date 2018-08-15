@@ -13,11 +13,11 @@ sudo apt-get update > /dev/null
 echo ${mag}Installing Amazon Web Services CLI...${end}
 sudo apt-get -y install awscli > /dev/null
 sleep 3
-echo ${mag}Installing Amazon Web Services CLI...${grn}[COMPLETE]${end}
+echo ${grn}[COMPLETE]${end}
 sleep 3
 echo ${mag}Installing jq...${end}
 sudo apt-get -y install jq > /dev/null
-echo ${mag}Installing jq...${grn}[COMPLETE]${end}
+echo ${grn}[COMPLETE]${end}
 sleep 3
 
 # Authenticate into AWS

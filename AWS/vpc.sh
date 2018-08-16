@@ -56,7 +56,7 @@ echo ${grn}[COMPLETE]${end}
 sleep 3
 
 # Assign Variable Values to Subnet ID's
-echo ${mag}Extracting Subnet ID's...${end}
+echo ${mag}Extracting Subnet IDs...${end}
 sleep 3
 aws ec2 describe-subnets | jq '.Subnets | .[] | del(.DefaultForAz) | del(.AvailabilityZone) | del(.State) | del(.MapPublicIpOnLaunch) | del(.AvailableIpAddressCount) | del(.VpcId)'
 sleep 3

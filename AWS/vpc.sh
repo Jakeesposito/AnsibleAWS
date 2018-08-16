@@ -32,7 +32,6 @@ sleep 3
 echo ${mag}Attaching Internet Gateway ${red}$IGWID${mag} to VPC ${red}$VPCID${mag}...
 aws ec2 attach-internet-gateway --internet-gateway-id ${IGWID} --vpc-id ${VPCID} --region us-east-2 > /dev/null
 sleep 3
-echo ${mag}Attaching Internet Gateway ${red}$IGWID${mag} to VPC ${red}$VPCID${mag}
 echo ${grn}[COMPLETE]${end}
 sleep 3
 
@@ -57,7 +56,26 @@ echo ${grn}[COMPLETE]${end}
 sleep 3
 
 # Assign Variable Values to Subnet ID's
-echo ${mag
+echo ${mag}Extracting Subnet ID's...${end}
+sleep 3
+aws ec2 describe-subnets | jq '.Subnets | .[] | del(.DefaultForAz) | del(.AvailabilityZone) | del(.State) | del(.MapPublicIpOnLaunch) | del(.AvailableIpAddressCount) | del(.VpcId)'
+sleep 3
+echo ${mag}Please enter Subnet ID Associated with ${red}10.0.1.0/24${end}
+read -p 'SubnetId: ' CSNID
+sleep 1
+echo ${mag} Subnet ID ${red}$CSNID${mag} Associated with ${red}10.0.1.0/24${end}
+sleep 1
+echo ${mag}Please enter Subnet ID Associated with ${red}10.0.2.0/24${end}
+read -p 'SubnetId: ' SSNID
+sleep 1
+echo ${mag} Subnet ID ${red}$SSNID${mag} Associated with ${red}10.0.2.0/24${end}
+sleep 1
+echo ${mag}Please enter Subnet ID Associated with ${red}10.0.3.0/24${end}
+read -p 'SubnetId: ' MSNID
+sleep 1
+echo ${mag} Subnet ID ${red}$MSNID${mag} Associated with ${red}10.0.3.0/24${end}
+sleep 1
+echo ${grn}[COMPLETE]${end}
 
 # Create Route Table
 echo ${mag}Creating a Custom Route Table...${end}

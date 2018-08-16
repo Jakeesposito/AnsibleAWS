@@ -32,7 +32,7 @@ sleep 3
 echo ${mag}Attaching Internet Gateway ${red}$IGWID${mag} to VPC ${red}$VPCID${mag}...
 aws ec2 attach-internet-gateway --internet-gateway-id ${IGWID} --vpc-id ${VPCID} --region us-east-2 > /dev/null
 sleep 3
-echo ${mag}Attaching Internet Gateway ${red}$IGWID${mag} to VPC ${red}$VPCID{mag}
+echo ${mag}Attaching Internet Gateway ${red}$IGWID${mag} to VPC ${red}$VPCID${mag}
 echo ${grn}[COMPLETE]${end}
 sleep 3
 
@@ -55,6 +55,9 @@ aws ec2 create-subnet --vpc-id ${VPCID} --cidr-block 10.0.3.0/24 | jq
 sleep 3
 echo ${grn}[COMPLETE]${end}
 sleep 3
+
+# Assign Variable Values to Subnet ID's
+echo ${mag
 
 # Create Route Table
 echo ${mag}Creating a Custom Route Table...${end}

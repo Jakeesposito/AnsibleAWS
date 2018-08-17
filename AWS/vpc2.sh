@@ -51,7 +51,7 @@ echo Server Subnet ${grn}10.0.2.0/24${cyn} Created with ID ${grn}${s_subnet_id}$
 sleep 3
 printf "\n"
 echo Creating Management Subnet...
-m_subnet_id=$(aws ec2 create-subnet --vpc-id ${vpc_id} --cidr-block 10.0.2.0/24 | jq '.Subnet.SubnetId' | tr -d '"')
+m_subnet_id=$(aws ec2 create-subnet --vpc-id ${vpc_id} --cidr-block 10.0.3.0/24 | jq '.Subnet.SubnetId' | tr -d '"')
 aws ec2 create-tags --resources "$m_subnet_id" --tags Key=Name,Value=Management_Subnet
 echo Management Subnet ${grn}10.0.3.0/24${cyn} Created with ID ${grn}${m_subnet_id}${cyn}
 sleep 3

@@ -21,7 +21,7 @@ vpc_id=$(echo $vpc_info | jq '.Vpc.VpcId' | tr -d '"')
 aws ec2 create-tags --resources "$vpc_id" --tags Key=Name,Value=Demo_VPC
 aws ec2 modify-vpc-attribute --vpc-id "$vpc_id" --enable-dns-support "{\"Value\":true}"
 aws ec2 modify-vpc-attribute --vpc-id "$vpc_id" --enable-dns-hostnames "{\"Value\":true}"
-echo VPC ${grn}Demo_VPC${mag} Created with ID ${grn}$vpc_id${cyn}
+echo VPC ${grn}Demo_VPC${cyn} Created with ID ${grn}$vpc_id${cyn}
 sleep 3 
 
 # Create & Attach Internet Gateway

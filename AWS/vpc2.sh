@@ -38,19 +38,22 @@ sleep 3
 # Create Client Subnet
 echo Creating Client Subnet...
 sleep 3
-c_subnet=$(aws ec2 create-subnet --vpc-id ${vpc_id} --cidr-block 10.0.1.0/24 | jq '.Subnet.SubnetId' | tr -d '"')
-echo Client Subnet ${grn}10.0.1.0/24${cyn} Created with ID ${grn}$c_subnet${cyn}
+c_subnet_id=$(aws ec2 create-subnet --vpc-id ${vpc_id} --cidr-block 10.0.1.0/24 | jq '.Subnet.SubnetId' | tr -d '"')
+aws ec2 create-tags --resources "$c_subnet_id" --tags Key=Name,Value=Client_Subnet
+echo Client Subnet ${grn}10.0.1.0/24${cyn} Created with ID ${grn}${c_subnet_id}${cyn}
 sleep 3
 printf "\n"
 echo Creating Server Subnet...
 sleep 3
-s_subnet=$(aws ec2 create-subnet --vpc-id ${vpc_id} --cidr-block 10.0.2.0/24 | jq '.Subnet.SubnetId' | tr -d '"')
-echo Server Subnet ${grn}10.0.2.0/24${cyn} Created with ID ${grn}${s_subnet}${cyn}
+s_subnet_id=$(aws ec2 create-subnet --vpc-id ${vpc_id} --cidr-block 10.0.2.0/24 | jq '.Subnet.SubnetId' | tr -d '"')
+aws ec2 create-tags --resources "$s_subnet_id" --tags Key=Name,Value=Server_Subnet
+echo Server Subnet ${grn}10.0.2.0/24${cyn} Created with ID ${grn}${s_subnet_id}${cyn}
 sleep 3
 printf "\n"
 echo Creating Management Subnet...
-m_subnet=$(aws ec2 create-subnet --vpc-id ${vpc_id} --cidr-block 10.0.2.0/24 | jq '.Subnet.SubnetId' | tr -d '"')
-echo Management Subnet ${grn}10.0.3.0/24${cyn} Created with ID ${grn}${m_subnet}${cyn}
+m_subnet_id=$(aws ec2 create-subnet --vpc-id ${vpc_id} --cidr-block 10.0.2.0/24 | jq '.Subnet.SubnetId' | tr -d '"')
+aws ec2 create-tags --resources "$m_subnet_id" --tags Key=Name,Value=Management_Subnet
+echo Management Subnet ${grn}10.0.3.0/24${cyn} Created with ID ${grn}${m_subnet_id}${cyn}
 sleep 3
 printf "\n"
 

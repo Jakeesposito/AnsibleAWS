@@ -22,7 +22,8 @@ aws ec2 create-tags --resources "$vpc_id" --tags Key=Name,Value=Demo_VPC
 aws ec2 modify-vpc-attribute --vpc-id "$vpc_id" --enable-dns-support "{\"Value\":true}"
 aws ec2 modify-vpc-attribute --vpc-id "$vpc_id" --enable-dns-hostnames "{\"Value\":true}"
 echo VPC ${grn}Demo_VPC${cyn} Created with ID ${grn}$vpc_id${cyn}
-sleep 3 
+sleep 3
+printf "\n"
 
 # Create & Attach Internet Gateway
 echo Creating Internet Gateway...
@@ -34,7 +35,8 @@ sleep 3
 aws ec2 attach-internet-gateway --internet-gateway-id ${igw_id} --vpc-id ${vpc_id} --region us-east-2 > /dev/null
 echo Internet Gateway ${grn}Demo_IGW${cyn} Attached to VPC ${grn}Demo_VPC${cyn}
 sleep 3
-
+printf "\n"
+cd .. 
 # Create Client Subnet
 echo Creating Client Subnet...
 sleep 3

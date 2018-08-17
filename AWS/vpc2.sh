@@ -38,18 +38,18 @@ sleep 3
 # Create Client Subnet
 echo Creating Client Subnet...
 sleep 3
-c_subnet=$(aws ec2 create-subnet --vpc-id ${vpc_id} --cidr-block 10.0.1.0/24 | jq '.Subnet.SubnetId' | -d '"')
+c_subnet=$(aws ec2 create-subnet --vpc-id ${vpc_id} --cidr-block 10.0.1.0/24 | jq '.Subnet.SubnetId' | tr -d '"')
 echo Client Subnet ${grn}10.0.1.0/24${cyn} Created with ID ${grn}$c_subnet${cyn}
 sleep 3
 printf "\n"
 echo Creating Server Subnet...
 sleep 3
-s_subnet=$(aws ec2 create-subnet --vpc-id ${vpc_id} --cidr-block 10.0.2.0/24 | jq '.Subnet.SubnetId' | -d '"')
+s_subnet=$(aws ec2 create-subnet --vpc-id ${vpc_id} --cidr-block 10.0.2.0/24 | jq '.Subnet.SubnetId' | tr -d '"')
 echo Server Subnet ${grn}10.0.2.0/24${cyn} Created with ID ${grn}${s_subnet}${cyn}
 sleep 3
 printf "\n"
 echo Creating Management Subnet...
-m_subnet=$(aws ec2 create-subnet --vpc-id ${vpc_id} --cidr-block 10.0.2.0/24 | jq '.Subnet.SubnetId' | -d '"')
+m_subnet=$(aws ec2 create-subnet --vpc-id ${vpc_id} --cidr-block 10.0.2.0/24 | jq '.Subnet.SubnetId' | tr -d '"')
 echo Management Subnet ${grn}10.0.3.0/24${cyn} Created with ID ${grn}${m_subnet}${cyn}
 sleep 3
 printf "\n"

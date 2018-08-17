@@ -53,3 +53,8 @@ m_subnet=$(aws ec2 create-subnet --vpc-id ${vpc_id} --cidr-block 10.0.2.0/24 | j
 echo Management Subnet ${grn}10.0.3.0/24${cyn} Created with ID ${grn}${m_subnet}${cyn}
 sleep 3
 printf "\n"
+
+
+
+
+${end}

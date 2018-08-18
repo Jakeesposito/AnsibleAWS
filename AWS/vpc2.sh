@@ -76,9 +76,7 @@ sleep 3
 printf "\n"
 
 # Create Routes
-#
-#
-#
-#
+echo Adding Internet Gateway as Default Route for Public Subnet...
+aws ec2 create-route --route-table-id ${rt_id} --destination-cidr-block 0.0.0.0/0 --gateway-id ${igw_id}
 
 echo ${end}

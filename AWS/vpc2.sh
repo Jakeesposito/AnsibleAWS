@@ -65,9 +65,20 @@ printf "\n"
 
 # Create Route Table
 echo Creating Route Table...
-# (aws ec2 create-route-table --vpc-id ${vpc_id})
+sleep 3
+rt_id=$(aws ec2 create-route-table --vpc-id ${vpc_id} | jq '.RouteTable.RouteTableId' | tr -d '"')
+aws ec2 create-tags --resources "$rt_id" --tags Key=Name,Value=Client_RouteTable
+echo Attaching Route Table to Client Subnet...
+sleep 3
+aws ec2 associate-route-table --route-table-id ${rt_id} --subnet-id ${c_subnet_id}
+echo Route Table ${grn}Client_RouteTable${cyn} Created with ID ${grn}${rt_id}${cyn}
+sleep 3
+printf "\n"
 
+# Create Routes
+#
+#
+#
+#
 
-
-
-${end}
+echo ${end}

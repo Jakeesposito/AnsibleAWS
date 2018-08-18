@@ -36,7 +36,7 @@ aws ec2 attach-internet-gateway --internet-gateway-id ${igw_id} --vpc-id ${vpc_i
 echo Internet Gateway ${grn}Demo_IGW${cyn} Attached to VPC ${grn}Demo_VPC${cyn}
 sleep 3
 printf "\n"
-cd .. 
+
 # Create Client Subnet
 echo Creating Client Subnet...
 sleep 3
@@ -45,6 +45,8 @@ aws ec2 create-tags --resources "$c_subnet_id" --tags Key=Name,Value=Client_Subn
 echo Client Subnet ${grn}10.0.1.0/24${cyn} Created with ID ${grn}${c_subnet_id}${cyn}
 sleep 3
 printf "\n"
+
+# Create Server Subnet
 echo Creating Server Subnet...
 sleep 3
 s_subnet_id=$(aws ec2 create-subnet --vpc-id ${vpc_id} --cidr-block 10.0.2.0/24 | jq '.Subnet.SubnetId' | tr -d '"')
@@ -52,12 +54,18 @@ aws ec2 create-tags --resources "$s_subnet_id" --tags Key=Name,Value=Server_Subn
 echo Server Subnet ${grn}10.0.2.0/24${cyn} Created with ID ${grn}${s_subnet_id}${cyn}
 sleep 3
 printf "\n"
+
+# Create Management Subnet
 echo Creating Management Subnet...
 m_subnet_id=$(aws ec2 create-subnet --vpc-id ${vpc_id} --cidr-block 10.0.3.0/24 | jq '.Subnet.SubnetId' | tr -d '"')
 aws ec2 create-tags --resources "$m_subnet_id" --tags Key=Name,Value=Management_Subnet
 echo Management Subnet ${grn}10.0.3.0/24${cyn} Created with ID ${grn}${m_subnet_id}${cyn}
 sleep 3
 printf "\n"
+
+# Create Route Table
+echo Creating Route Table...
+# (aws ec2 create-route-table --vpc-id ${vpc_id})
 
 
 

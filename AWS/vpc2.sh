@@ -86,6 +86,12 @@ echo ${complete}
 sleep 3
 printf "\n"
 
+# Create Security Group and Enable SSH
+echo Creating Security Group...
+sleep 3
+aws ec2 create-security-group --group-name ssh_sg --vpc-id ${vpc_id}
+sudo
+
 # Deploying VM for Ansible Control Machine
 echo Deploying VM for Ansible Control Machine...
 ans_instance_id=$(aws ec2 run-instances --image-id ami-5e8bb23b --count 1 --instance-type t2.micro --key-name AWSPrivateKey --subnet-id ${m_subnet_id} --associate-public-ip-address | jq '.Instances' | jq .[] | jq '.InstanceId' | tr -d '"')

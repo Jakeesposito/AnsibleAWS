@@ -11,7 +11,6 @@ end=$'\e[0m'
 # - Complete
 complete=$(echo ${grn}[--VPC SETUP COMPLETE--]${cyn})
 
-
 # Create VPC
 echo ${cyn}
 echo Creating VPC...
@@ -89,7 +88,7 @@ printf "\n"
 # Create Security Group and Enable SSH
 echo Creating Security Group...
 sleep 3
-aws ec2 create-security-group --group-name ssh_sg --vpc-id ${vpc_id} | jq
+aws ec2 create-security-group --group-name ssh_sg --vpc-id ${vpc_id} --description "allow ssh" | jq
 
 # Deploying VM for Ansible Control Machine
 echo Deploying VM for Ansible Control Machine...
@@ -101,10 +100,13 @@ printf "\n"
 echo Waiting for Public DNS...
 sleep 3
 ans_dns=$(aws ec2 describe-instances --instance-ids ${ans_instance_id} | jq .[] | jq .[] | jq '.Instances' | jq .[] | jq '.PublicDnsName' | tr -d '"')
-echo Ansible Control Machine can be Accessed via ssh at ${red}${ans_dns}${cyn}
+echo Ansible Control Machine can be Accessed via ssh at 
 printf "\n"
+echo ${red}${ans_dns}${cyn}
 printf "\n"
-echo ${grn} ~~SCRIPT COMPLETE~~ ${end}
+echo ${grn}------------------------------
+echo -------SCRIPT COMPLETE--------
+echo ------------------------------
 printf "\n"
 printf "\n"
 echo ${end}

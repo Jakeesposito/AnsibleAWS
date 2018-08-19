@@ -71,12 +71,26 @@ aws ec2 create-tags --resources "$rt_id" --tags Key=Name,Value=Client_RouteTable
 echo Attaching Route Table to Client Subnet...
 sleep 3
 aws ec2 associate-route-table --route-table-id ${rt_id} --subnet-id ${c_subnet_id} > /dev/null
+echo Attaching Route Table to Management Subnet...
+sleep 3
+aws ec2 associate-route-table --route-table-id ${rt_id} --subnet-id ${m_subnet_id} > /dev/null
 echo Route Table ${grn}Client_RouteTable${cyn} Created with ID ${grn}${rt_id}${cyn}
+echo Route Table ${grn}Client_RouteTable${cyn} Attached to Client & Management Subnets
 sleep 3
 printf "\n"
 
 # Create Routes
 echo Adding Internet Gateway as Default Route for Public Subnet...
 aws ec2 create-route --route-table-id ${rt_id} --destination-cidr-block 0.0.0.0/0 --gateway-id ${igw_id} > /dev/null
+echo ${complete}
+sleep 3
+printf "\n"
 
+# Deploying VM for Ansible Control Machine
+echo Deploying VM for Ansible Control Machine...
+ans_instance_id=$(aws ec2 run-instances --image-id ami-5e8bb23b --count 1 --instance-type t2.micro --key-name AWSPrivateKey --subnet-id ${m_subnet_id} --associate-public-ip-address | jq '.Instances' | jq .[] | jq'.InstanceId' | tr -d '"')
+aws ec2 create-tags --resources "$ans_instance_id" --tags Key=Name,Value=Ansible_ControlMachine
+echo EC2 Instance ${grn}Ansible_ControlMachine${cyn}
+sleep 3
+printf "\n"
 echo ${end}

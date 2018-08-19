@@ -4,7 +4,7 @@
 red=$'\e[1;31m'
 grn=$'\e[1;32m'
 blu=$'\e[1;34m'
-mag=$'\e[1;35m'
+mag=$'\e[1;36m'
 cyn=$'\e[1;36m'
 end=$'\e[0m'
 
@@ -31,13 +31,8 @@ sudo apt-get install ansible > /dev/null 2>&1
 echo ${mag}Installing Ansible...${grn}[COMPLETE]${end}
 sleep 3
 echo ${mag}Finalizing...
-sleep .5
-echo .
-sleep .5
-echo .
-sleep .5
 echo .${end}
 sudo apt-get update > /dev/null 2>&1
 sleep 3
-echo ${mag}ANSIBLE INSTALLATION AND CONFIGURATION COMPLETE${end}
+echo ${grn}ANSIBLE INSTALLATION AND CONFIGURATION COMPLETE${end}
 sleep 1

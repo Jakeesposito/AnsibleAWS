@@ -90,7 +90,14 @@ printf "\n"
 echo Deploying VM for Ansible Control Machine...
 ans_instance_id=$(aws ec2 run-instances --image-id ami-5e8bb23b --count 1 --instance-type t2.micro --key-name AWSPrivateKey --subnet-id ${m_subnet_id} --associate-public-ip-address | jq '.Instances' | jq .[] | jq '.InstanceId' | tr -d '"')
 aws ec2 create-tags --resources "$ans_instance_id" --tags Key=Name,Value=Ansible_ControlMachine
-echo EC2 Instance ${grn}Ansible_ControlMachine${cyn}
+echo EC2 Instance ${grn}Ansible_ControlMachine${cyn} Created
 sleep 3
 printf "\n"
-echo ${end}
+echo Waiting for Public DNS...
+sleep 3
+ans_dns=$(aws ec2 describe-instances --instance-ids ${ans_instance_id} | jq .[] | jq .[] | jq '.Instances' | jq .[] | jq '.PublicDnsName' | tr -d '"')
+echo Ansible Control Machine can be Accessed via ssh at ${grn}${ans_dns}${cyn}
+echo .
+echo .
+echo ${grn} ~~SCRIPT COMPLETE~~ ${end}
+

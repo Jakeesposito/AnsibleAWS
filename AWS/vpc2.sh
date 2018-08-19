@@ -88,7 +88,7 @@ printf "\n"
 
 # Deploying VM for Ansible Control Machine
 echo Deploying VM for Ansible Control Machine...
-ans_instance_id=$(aws ec2 run-instances --image-id ami-5e8bb23b --count 1 --instance-type t2.micro --key-name AWSPrivateKey --subnet-id ${m_subnet_id} --associate-public-ip-address | jq '.Instances' | jq .[] | jq'.InstanceId' | tr -d '"')
+ans_instance_id=$(aws ec2 run-instances --image-id ami-5e8bb23b --count 1 --instance-type t2.micro --key-name AWSPrivateKey --subnet-id ${m_subnet_id} --associate-public-ip-address | jq '.Instances' | jq .[] | jq '.InstanceId' | tr -d '"')
 aws ec2 create-tags --resources "$ans_instance_id" --tags Key=Name,Value=Ansible_ControlMachine
 echo EC2 Instance ${grn}Ansible_ControlMachine${cyn}
 sleep 3

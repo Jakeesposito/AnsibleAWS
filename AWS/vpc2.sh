@@ -9,7 +9,7 @@ mag=$'\e[1;35m'
 cyn=$'\e[1;36m'
 end=$'\e[0m'
 # - Complete
-complete=$(echo ${grn}[--COMPLETE--]${mag})
+complete=$(echo ${grn}[--VPC SETUP COMPLETE--]${cyn})
 
 
 # Create VPC
@@ -68,20 +68,20 @@ echo Creating Route Table...
 sleep 3
 rt_id=$(aws ec2 create-route-table --vpc-id ${vpc_id} | jq '.RouteTable.RouteTableId' | tr -d '"')
 aws ec2 create-tags --resources "$rt_id" --tags Key=Name,Value=Client_RouteTable
-echo Attaching Route Table to Client Subnet...
+echo Attaching Route Tables...
 sleep 3
 aws ec2 associate-route-table --route-table-id ${rt_id} --subnet-id ${c_subnet_id} > /dev/null
-echo Attaching Route Table to Management Subnet...
-sleep 3
 aws ec2 associate-route-table --route-table-id ${rt_id} --subnet-id ${m_subnet_id} > /dev/null
 echo Route Table ${grn}Client_RouteTable${cyn} Created with ID ${grn}${rt_id}${cyn}
-echo Route Table ${grn}Client_RouteTable${cyn} Attached to Client & Management Subnets
+echo Route Table ${grn}Client_RouteTable${cyn} Attached to Client and Management Subnets
 sleep 3
 printf "\n"
 
 # Create Routes
 echo Adding Internet Gateway as Default Route for Public Subnet...
 aws ec2 create-route --route-table-id ${rt_id} --destination-cidr-block 0.0.0.0/0 --gateway-id ${igw_id} > /dev/null
+sleep 3
+printf "\n"
 echo ${complete}
 sleep 3
 printf "\n"

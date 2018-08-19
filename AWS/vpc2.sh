@@ -88,11 +88,14 @@ printf "\n"
 # Create Security Group and Enable SSH
 echo Creating Security Group...
 sleep 3
-aws ec2 create-security-group --group-name ssh_sg --vpc-id ${vpc_id} --description "allow ssh" | jq
+sg_id=$(aws ec2 create-security-group --group-name ssh_sg --vpc-id ${vpc_id} --description "allow ssh" | jq '.GroupId' | tr -d '"')
+aws ec2 create-tags --resources ${sg_id} --tags Key=Name,Value=ssh_sg
+aws ec2 authorize-security-group-ingress --group-id ${sg_id} --protocol tcp --port 22 --cidr 0.0.0.0/0
+
 
 # Deploying VM for Ansible Control Machine
 echo Deploying VM for Ansible Control Machine...
-ans_instance_id=$(aws ec2 run-instances --image-id ami-5e8bb23b --count 1 --instance-type t2.micro --key-name AWSPrivateKey --subnet-id ${m_subnet_id} --associate-public-ip-address | jq '.Instances' | jq .[] | jq '.InstanceId' | tr -d '"')
+ans_instance_id=$(aws ec2 run-instances --image-id ami-5e8bb23b --count 1 --instance-type t2.micro --security-group-ids ${sg_id} --key-name AWSPrivateKey --subnet-id ${m_subnet_id} --associate-public-ip-address | jq '.Instances' | jq .[] | jq '.InstanceId' | tr -d '"')
 aws ec2 create-tags --resources "$ans_instance_id" --tags Key=Name,Value=Ansible_ControlMachine
 echo EC2 Instance ${grn}Ansible_ControlMachine${cyn} Created
 sleep 3
@@ -102,7 +105,8 @@ sleep 3
 ans_dns=$(aws ec2 describe-instances --instance-ids ${ans_instance_id} | jq .[] | jq .[] | jq '.Instances' | jq .[] | jq '.PublicDnsName' | tr -d '"')
 echo Ansible Control Machine can be Accessed via ssh at 
 printf "\n"
-echo ${red}${ans_dns}${cyn}
+echo ${mag}${ans_dns}${cyn}
+
 printf "\n"
 echo ${grn}------------------------------
 echo -------SCRIPT COMPLETE--------

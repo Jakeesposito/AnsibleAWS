@@ -89,8 +89,7 @@ printf "\n"
 # Create Security Group and Enable SSH
 echo Creating Security Group...
 sleep 3
-aws ec2 create-security-group --group-name ssh_sg --vpc-id ${vpc_id}
-sudo
+aws ec2 create-security-group --group-name ssh_sg --vpc-id ${vpc_id} | jq
 
 # Deploying VM for Ansible Control Machine
 echo Deploying VM for Ansible Control Machine...

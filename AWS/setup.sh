@@ -23,19 +23,45 @@ sleep 3
 # Install Azure CLI
 echo ${mag}Installing Azure CLI 2.0...${end}
 AZ_REPO=$(lsb_release -cs)
-echo ${mag}Version ${grn}${AZ_REPO}${end}
+echo ${mag}For Ubuntu ${grn}${AZ_REPO}${end}
 echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" | sudo tee /etc/apt/sources.list.d/azure-cli.list > /dev/null
 curl -L https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add - > /dev/null
 sudo apt-get install apt-transport-https > /dev/null
-sudo apt-get update && sudo apt-get install azure-cli
+sudo apt-get update && sudo apt-get install azure-cli > /dev/null
 sleep 3
 echo ${grn}[COMPLETE]${end}
 sleep 3
 
 # Authenticate into Azure
-echo Authenticating into Azure...
+echo ${mag}Authenticating into Azure...${end}
 sleep 3
-az login | jq .[] | jq '.tenantId' | tr -d '"'
+ten_id=$(az login | jq .[] | jq '.tenantId' | tr -d '"')
+echo ${mag} Signed in with Tenant ID ${grn}${ten_id}${end}
+sleep 3
+echo ${mag}Creating Service Principal Account...${end}
+sleep 3
+az group create -n 'AnsibleResourceGroup' -l 'eastus' > /dev/null
+az provider register -n Microsoft.KeyVault > /dev/null
+sleep 3
+echo ${mag}Registering...${end}
+reg_state=$(az provider show -n Microsoft.KeyVault | jq '.registrationState' | tr -d '"') > /dev/null
+# Wait for Registration
+while [ $reg_state == Registering ]
+echo ${red}$reg_state${end}
+sleep 5
+reg_state=$(az provider show -n Microsoft.KeyVault | jq '.registrationState' | tr -d '"') > /dev/null
+done
+echo ${grn}Registered${end}
+sleep 3
+echo ${mag}Creating Unique Key Vault...${end}
+vault_name=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 12 | head -n 1) > /dev/null
+az keyvault create --vault-name ${vault_name} --resource-group 'AnsibleResourceGroup' --location 'eastus' > /dev/null
+echo ${mag}Key Vault ${grn}${vault_name}${mag} Created${end}
+sleep 3
+
+
+az ad sp create-for-rbac --name AnsibleServiceAccount --password AnsibleAccount1 --create-cert --cert AnsibleCert --keyvault ${vault_name} | jq
+
 
 # Authenticate into AWS
 echo ${mag}Enter Access Keys Below...${red}

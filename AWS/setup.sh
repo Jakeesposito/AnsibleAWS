@@ -32,6 +32,11 @@ sleep 3
 echo ${grn}[COMPLETE]${end}
 sleep 3
 
+# Authenticate into Azure
+echo Authenticating into Azure...
+sleep 3
+az login | jq .[] | jq '.tenantId' | tr -d '"'
+
 # Authenticate into AWS
 echo ${mag}Enter Access Keys Below...${red}
 aws configure
@@ -40,8 +45,6 @@ sleep 3
 aws sts get-caller-identity | jq
 sleep 3
 
-# Authenticate into Azure
-az login | jq
 
 echo ${mag}...........................................................${end}
 echo ${mag}...........................................................${end}

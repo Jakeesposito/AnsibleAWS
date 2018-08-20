@@ -21,10 +21,9 @@ echo ${grn}[COMPLETE]${end}
 sleep 3
 
 # Install Azure CLI
-echo ${mag}Installing Azure CLI 2.0...${end}
 AZ_REPO=$(lsb_release -cs)
-echo ${mag}For Ubuntu ${grn}${AZ_REPO}${end}
-echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" | sudo tee /etc/apt/sources.list.d/azure-cli.list > /dev/null
+echo ${mag}Installing Azure CLI 2.0 For Ubuntu ${AZ_REPO}...${end}
+echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" > /dev/null | sudo tee /etc/apt/sources.list.d/azure-cli.list
 curl -L https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add - > /dev/null
 sudo apt-get install apt-transport-https > /dev/null
 sudo apt-get update && sudo apt-get install azure-cli > /dev/null
@@ -47,6 +46,7 @@ echo ${mag}Registering...${end}
 reg_state=$(az provider show -n Microsoft.KeyVault | jq '.registrationState' | tr -d '"') > /dev/null
 # Wait for Registration
 while [ $reg_state == Registering ]
+do
 echo ${red}$reg_state${end}
 sleep 5
 reg_state=$(az provider show -n Microsoft.KeyVault | jq '.registrationState' | tr -d '"') > /dev/null

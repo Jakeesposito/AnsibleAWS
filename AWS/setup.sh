@@ -24,7 +24,7 @@ sleep 3
 AZ_REPO=$(lsb_release -cs)
 echo ${mag}Installing Azure CLI 2.0 For Ubuntu ${AZ_REPO}...${end}
 echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" | sudo tee /etc/apt/sources.list.d/azure-cli.list &> /dev/null
-curl -L https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add - > /dev/null
+curl -L -s https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add - &> /dev/null
 sudo apt-get install apt-transport-https > /dev/null
 sudo apt-get update && sudo apt-get install azure-cli > /dev/null
 sleep 3
@@ -35,7 +35,7 @@ sleep 3
 echo ${mag}Authenticating into Azure...${end}
 sleep 3
 ten_id=$(az login | jq .[] | jq '.tenantId' | tr -d '"')
-echo ${mag} Signed in with Tenant ID ${grn}${ten_id}${end}
+echo ${mag}Signed in with Tenant ID ${grn}${ten_id}${end}
 sleep 3
 echo ${mag}Creating Service Principal Account...${end}
 sleep 3
@@ -45,7 +45,7 @@ sleep 3
 echo ${mag}Registering...${end}
 reg_state=$(az provider show -n Microsoft.KeyVault | jq '.registrationState' | tr -d '"') > /dev/null
 # Wait for Registration
-while [ $reg_state == Registering ]
+while [ "$reg_state" != "Registered" ]
 do
 echo ${red}$reg_state${end}
 sleep 5

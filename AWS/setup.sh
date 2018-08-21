@@ -23,8 +23,8 @@ sleep 3
 # Install Azure CLI
 AZ_REPO=$(lsb_release -cs)
 echo ${mag}Installing Azure CLI 2.0 For Ubuntu ${AZ_REPO}...${end}
-echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" | sudo tee /etc/apt/sources.list.d/azure-cli.list &> /dev/null
-curl -L -s -o /dev/null https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
+echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" | sudo tee /etc/apt/sources.list.d/azure-cli.list > /dev/null 2>&1
+curl -L -s -o /dev/null https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add - > /dev/null 2>&1
 sudo apt-get install apt-transport-https > /dev/null
 sudo apt-get update && sudo apt-get install azure-cli > /dev/null
 sleep 3

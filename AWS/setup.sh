@@ -23,8 +23,8 @@ sleep 3
 # Install Azure CLI
 AZ_REPO=$(lsb_release -cs)
 echo ${mag}Installing Azure CLI 2.0 For Ubuntu ${AZ_REPO}...${end}
-echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" | sudo tee /etc/apt/sources.list.d/azure-cli.list &> /dev/null
-curl -L -s https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add - &> /dev/null
+echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" &> | sudo tee /etc/apt/sources.list.d/azure-cli.list &> /dev/null
+curl -L -s https://packages.microsoft.com/keys/microsoft.asc &> /dev/null | sudo apt-key add - &> /dev/null
 sudo apt-get install apt-transport-https > /dev/null
 sudo apt-get update && sudo apt-get install azure-cli > /dev/null
 sleep 3
@@ -41,21 +41,19 @@ echo ${mag}Creating Service Principal Account...${end}
 sleep 3
 az group create -n 'AnsibleResourceGroup' -l 'eastus' > /dev/null
 az provider register -n Microsoft.KeyVault &> /dev/null
-sleep 3
 echo ${mag}Registering...${end}
-reg_state=$(az provider show -n Microsoft.KeyVault | jq '.registrationState' | tr -d '"') > /dev/null
+reg_state=$(az provider show -n Microsoft.KeyVault | jq '.registrationState' | tr -d '"')
 # Wait for Registration
 while [ "$reg_state" != "Registered" ]
 do
 echo ${red}$reg_state${end}
-sleep 5
-reg_state=$(az provider show -n Microsoft.KeyVault | jq '.registrationState' | tr -d '"') > /dev/null
+reg_state=$(az provider show -n Microsoft.KeyVault | jq '.registrationState' | tr -d '"')
 done
 echo ${grn}Registered${end}
 sleep 3
 echo ${mag}Creating Unique Key Vault...${end}
-vault_name=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 12 | head -n 1) > /dev/null
-az keyvault create --vault-name ${vault_name} --resource-group 'AnsibleResourceGroup' --location 'eastus' > /dev/null
+vault_name=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 12 | head -n 1)
+az keyvault create --name ${vault_name} --resource-group 'AnsibleResourceGroup' --location 'eastus'
 echo ${mag}Key Vault ${grn}${vault_name}${mag} Created${end}
 sleep 3
 

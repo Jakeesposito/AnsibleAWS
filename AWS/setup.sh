@@ -20,7 +20,7 @@ sudo apt-get -y install jq > /dev/null
 echo ${grn}[COMPLETE]${end}
 sleep 3
 echo ${mag}Installing Password Generator...${end}
-sudo apt install pwgen > /dev/null
+sudo apt-get install pwgen > /dev/null
 echo ${grn}[COMPLETE]${end}
 sleep 3
 

@@ -32,7 +32,7 @@ sudo apt-get update > /dev/null
 sudo apt-get install azure-cli > /dev/null
 sleep 3
 echo ${grn}[COMPLETE]${end}
-sleep 3
+
 
 # Authenticate into Azure
 echo ${mag}Authenticating into Azure...${end}

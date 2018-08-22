@@ -27,7 +27,7 @@ sleep 3
 # Install Azure CLI
 AZ_REPO=$(lsb_release -cs)
 echo ${mag}Installing Azure CLI 2.0 For Ubuntu ${AZ_REPO}...${end}
-echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" | sudo tee /etc/apt/sources.list.d/azure-cli.list > /dev/null
+echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" > /dev/null | sudo tee /etc/apt/sources.list.d/azure-cli.list > /dev/null/
 curl -L https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add - > /dev/null
 sudo apt-get install apt-transport-https > /dev/null
 sudo apt-get update > /dev/null
@@ -58,7 +58,7 @@ echo ${grn}Registered${end}
 sleep 3
 echo ${mag}Creating Unique Key Vault...${end}
 vault_name=$(pwgen -n -B 12 1)
-az keyvault create --resource-group AnsibleResourceGroup --name ${vault_name} --location 'eastus'
+az keyvault create --resource-group AnsibleResourceGroup --name ${vault_name} --location 'eastus' > /dev/null
 echo ${mag}Key Vault ${grn}${vault_name}${mag} Created${end}
 sleep 3
 

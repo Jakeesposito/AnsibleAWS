@@ -4,6 +4,7 @@
 grn=$'\e[1;32m'
 mag=$'\e[1;35m'
 cyn=$'\e[1;36m'
+yel=$'\e[1;33m'
 end=$'\e[0m'
 
 #Install AWS CLI, Jq for json, and pwgen
@@ -33,7 +34,6 @@ echo ${grn}[COMPLETE]${end}
 # Authenticate into Azure
 echo ${mag}Authenticating into Azure...${end}
 ten_id=$(az login | jq .[] | jq '.tenantId' | tr -d '"')
-echo ${mag}Signed in with Tenant ID ${grn}${ten_id}${end}
 echo ${grn}[COMPLETE]${end}
 echo ${mag}Creating Service Principal Account...${end}
 az group create -n 'AnsibleResourceGroup' -l 'eastus' > /dev/null
@@ -55,7 +55,6 @@ echo ${grn}[COMPLETE]${end}
 echo ${mag}Creating Unique Key Vault...${end}
 vault_name=$(pwgen -n -B 12 1)
 az keyvault create --resource-group AnsibleResourceGroup --name ${vault_name} --location 'eastus' > /dev/null
-echo ${mag}Key Vault ${grn}${vault_name}${mag} Created${end}
 echo ${grn}[COMPLETE]${end}
 sleep 2
 printf "\n"
@@ -67,19 +66,25 @@ printf "\n"
 sleep 2
 # Authenticate into AWS
 echo ${mag}Enter AWS Access Keys Below...${cyn}
+printf "\n"
 aws configure
+printf "\n"
 echo ${mag}Testing AWS Connection...${end}
-sleep 3
-aws sts get-caller-identity > /dev/null
+sleep 2
 echo ${grn}[COMPLETE]${end}
 sleep 3
 printf "\n"
 printf "\n"
-echo ${mag}...........................................................${end}
-echo ${mag}...........................................................${end}
-echo ${mag}.............${grn}SERVER SETUP COMPLETE${mag}.............${end}
-echo ${mag}...........................................................${end}
-echo ${mag}...........................................................${end}
+echo ${grn}...........................................................${end}
+echo ${grn}...........................................................${end}
+echo ${grn}.................${grn}SERVER SETUP COMPLETE${grn}.....................${end}
+echo ${grn}...........................................................${end}
+echo ${grn}...........................................................${end}
 sleep 1
 printf "\n"
 printf "\n"
+echo ${yel}...........................................................${end}
+echo ${yel}...........................................................${end}
+echo ${yel}...................${grn}CREATING AWS VPC${yel}........................${end}
+echo ${yel}...........................................................${end}
+echo ${yel}...........................................................${end}

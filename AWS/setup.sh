@@ -50,6 +50,8 @@ echo ${grn}[COMPLETE]${end}
 
 echo ${mag}Registering...${end}
 reg_state=$(az provider show -n Microsoft.KeyVault | jq '.registrationState' | tr -d '"')
+echo $reg_state
+
 # Wait for Registration
 while [ "$reg_state" != "Registered" ]
 do

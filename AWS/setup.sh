@@ -19,12 +19,16 @@ echo ${mag}Installing jq...${end}
 sudo apt-get -y install jq > /dev/null
 echo ${grn}[COMPLETE]${end}
 sleep 3
+echo ${mag}Installing Password Generator...${end}
+sudo apt install pwgen > /dev/null
+echo ${grn}[COMPLETE]${end}
+sleep 3
 
 # Install Azure CLI
 AZ_REPO=$(lsb_release -cs)
 echo ${mag}Installing Azure CLI 2.0 For Ubuntu ${AZ_REPO}...${end}
-echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" > /dev/null 2>&1 | sudo tee /etc/apt/sources.list.d/azure-cli.list > /dev/null 2>&1
-curl -L -s -o /dev/null https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add - > /dev/null 2>&1
+echo "deb [arch=amd64] https://packages.microsoft.com/repos/azure-cli/ $AZ_REPO main" | sudo tee /etc/apt/sources.list.d/azure-cli.list > /dev/null 2>&1
+curl -L -s -o /dev/null https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add - > /dev/null
 sudo apt-get install apt-transport-https > /dev/null
 sudo apt-get update > /dev/null
 sudo apt-get install azure-cli > /dev/null
@@ -53,8 +57,8 @@ done
 echo ${grn}Registered${end}
 sleep 3
 echo ${mag}Creating Unique Key Vault...${end}
-vault_name=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 12 | head -n 1)
-az keyvault create --name ${vault_name} --resource-group 'AnsibleResourceGroup' --location 'eastus'
+vault_name=$(pwgen -n -B 12 1)
+az keyvault create --resource-group AnsibleResourceGroup --name ${vault_name} --location 'eastus'
 echo ${mag}Key Vault ${grn}${vault_name}${mag} Created${end}
 sleep 3
 

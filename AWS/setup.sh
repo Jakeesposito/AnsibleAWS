@@ -39,11 +39,9 @@ echo ${mag}Creating Service Principal Account...${end}
 az group create -n 'AnsibleResourceGroup' -l 'eastus' > /dev/null
 az provider register -n Microsoft.KeyVault &> /dev/null
 echo ${grn}[COMPLETE]${end}
-
 echo ${mag}Registering...${end}
 reg_state=$(az provider show -n Microsoft.KeyVault | jq '.registrationState' | tr -d '"')
-sleep 2
-echo $reg_state
+sleep 1
 
 # Wait for Registration
 while [ "$reg_state" != "Registered" ]
@@ -51,28 +49,37 @@ do
 echo ${red}$reg_state${end}
 reg_state=$(az provider show -n Microsoft.KeyVault | jq '.registrationState' | tr -d '"')
 done
-echo ${grn}Registered${end}
-sleep 3
+echo ${grn}[COMPLETE]${end}
+
+# Create Key Vault
 echo ${mag}Creating Unique Key Vault...${end}
 vault_name=$(pwgen -n -B 12 1)
 az keyvault create --resource-group AnsibleResourceGroup --name ${vault_name} --location 'eastus' > /dev/null
 echo ${mag}Key Vault ${grn}${vault_name}${mag} Created${end}
-sleep 3
+echo ${grn}[COMPLETE]${end}
+sleep 2
+printf '/n'
+printf '/n'
 #az ad sp create-for-rbac --name AnsibleServiceAccount --password AnsibleAccount1 --create-cert --cert AnsibleCert --keyvault ${vault_name} | jq
 echo ${grn}[AZURE CONFIGURATION COMPLETE]${end}
-
+printf '/n'
+printf '/n'
+sleep 2
 # Authenticate into AWS
-echo ${cyn}Enter AWS Access Keys Below...${cyn}
+echo ${mag}Enter AWS Access Keys Below...${cyn}
 aws configure
-echo ${cyn}Testing AWS Connection...${end}
+echo ${mag}Testing AWS Connection...${end}
 sleep 3
-aws sts get-caller-identity | jq
+aws sts get-caller-identity > /dev/null
+echo ${grn}[COMPLETE]${end}
 sleep 3
-
-
+printf '/n'
+printf '/n'
 echo ${mag}...........................................................${end}
 echo ${mag}...........................................................${end}
-echo ${mag}............${grn}Amazon Web Services Setup Complete${mag}.............${end}
+echo ${mag}.............${grn}SERVER SETUP COMPLETE${mag}.............${end}
 echo ${mag}...........................................................${end}
 echo ${mag}...........................................................${end}
 sleep 1
+printf '/n'
+printf '/n'

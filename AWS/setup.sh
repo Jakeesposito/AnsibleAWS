@@ -8,7 +8,7 @@ mag=$'\e[1;35m'
 cyn=$'\e[1;36m'
 end=$'\e[0m'
 
-#Install AWS CLI and jq
+#Install AWS CLI, Jq for json, and pwgen
 sudo apt-get update > /dev/null
 echo ${mag}Installing Amazon Web Services CLI...${end}
 sudo apt-get -y install awscli > /dev/null
@@ -46,11 +46,14 @@ echo ${mag}Creating Service Principal Account...${end}
 sleep 3
 az group create -n 'AnsibleResourceGroup' -l 'eastus' > /dev/null
 az provider register -n Microsoft.KeyVault &> /dev/null
+echo ${grn}[COMPLETE]${end}
+
 echo ${mag}Registering...${end}
 reg_state=$(az provider show -n Microsoft.KeyVault | jq '.registrationState' | tr -d '"')
 # Wait for Registration
 while [ "$reg_state" != "Registered" ]
 do
+sleep 6
 echo ${red}$reg_state${end}
 reg_state=$(az provider show -n Microsoft.KeyVault | jq '.registrationState' | tr -d '"')
 done

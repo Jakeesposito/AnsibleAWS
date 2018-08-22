@@ -10,17 +10,14 @@ end=$'\e[0m'
 sudo apt-get update > /dev/null
 echo ${mag}Installing Amazon Web Services CLI...${end}
 sudo apt-get -y install awscli > /dev/null
-sleep 3
 echo ${grn}[COMPLETE]${end}
-sleep 3
 echo ${mag}Installing jq...${end}
 sudo apt-get -y install jq > /dev/null
 echo ${grn}[COMPLETE]${end}
-sleep 3
 echo ${mag}Installing Password Generator...${end}
 sudo apt-get install pwgen > /dev/null
 echo ${grn}[COMPLETE]${end}
-sleep 3
+
 
 # Install Azure CLI
 AZ_REPO=$(lsb_release -cs)
@@ -30,18 +27,15 @@ curl -L -s https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add 
 sudo apt-get install apt-transport-https > /dev/null
 sudo apt-get update > /dev/null
 sudo apt-get install azure-cli > /dev/null
-sleep 3
 echo ${grn}[COMPLETE]${end}
 
 
 # Authenticate into Azure
 echo ${mag}Authenticating into Azure...${end}
-sleep 3
 ten_id=$(az login | jq .[] | jq '.tenantId' | tr -d '"')
 echo ${mag}Signed in with Tenant ID ${grn}${ten_id}${end}
-sleep 3
+echo ${grn}[COMPLETE]${end}
 echo ${mag}Creating Service Principal Account...${end}
-sleep 3
 az group create -n 'AnsibleResourceGroup' -l 'eastus' > /dev/null
 az provider register -n Microsoft.KeyVault &> /dev/null
 echo ${grn}[COMPLETE]${end}
@@ -64,15 +58,13 @@ vault_name=$(pwgen -n -B 12 1)
 az keyvault create --resource-group AnsibleResourceGroup --name ${vault_name} --location 'eastus' > /dev/null
 echo ${mag}Key Vault ${grn}${vault_name}${mag} Created${end}
 sleep 3
-
-
-az ad sp create-for-rbac --name AnsibleServiceAccount --password AnsibleAccount1 --create-cert --cert AnsibleCert --keyvault ${vault_name} | jq
-
+#az ad sp create-for-rbac --name AnsibleServiceAccount --password AnsibleAccount1 --create-cert --cert AnsibleCert --keyvault ${vault_name} | jq
+echo ${grn}[AZURE CONFIGURATION COMPLETE]${end}
 
 # Authenticate into AWS
-echo ${mag}Enter Access Keys Below...${red}
+echo ${cyn}Enter AWS Access Keys Below...${cyn}
 aws configure
-echo ${mag}Testing AWS Connection...${end}
+echo ${cyn}Testing AWS Connection...${end}
 sleep 3
 aws sts get-caller-identity | jq
 sleep 3

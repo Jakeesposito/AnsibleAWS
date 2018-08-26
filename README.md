@@ -1,7 +1,7 @@
 # Running Ansible on AWS to Deploy Hybrid/Multi-Cloud Environments
 
 ### Create IAM User in AWS
-1. Login to https://www.aws.amazon.com.
+1. Login to [AWS Console](https://www.aws.amazon.com).
 2. Navigate to IAM groups and click *Create New Group*.
 3. Name the group and select the *AdministratorAccess* policy.
 4. Navigate to IAM users and click *Add User*.
@@ -11,5 +11,7 @@
 ### Launch Ubuntu Server VM
 1. Navigate to AWS EC2.
 2. Click *Launch Instance*.
-3. Find *Ubuntu Server 16.04 LTS (HVM)* `ami-0552e3455b9bc8d50`
+3. Find *Ubuntu Server 16.04 LTS (HVM)* and launch VM on a *t2.micro* instance.
+4. Select *Create a New Key Pair* and enter the name *AWSPrivateKey*. Download the key pair .PEM file.
+5. 
 

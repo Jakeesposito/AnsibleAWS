@@ -1,3 +1,4 @@
-# Running an Ansible Control Machine on Amazon Web Services (AWS)
+# Running Ansible on AWS to Deploy Hybrid/Multi-Cloud Environments
 
-Install and Configure Ansible on Ubuntu Server 18.04 LTS 
+## 1. Launch Ubuntu Server VM
+

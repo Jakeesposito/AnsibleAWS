@@ -28,5 +28,20 @@ This section requires PuTTY and PuTTYgen which can be downloaded on their [websi
 1. Update the Ubuntu Server instance. ```sudo apt-get update```
 2. Navigate to the local *bin* directory. ```cd /usr/local/bin```
 3. Copy Git repository locally. ```sudo git clone https://www.github.com/jakeesposito/multicloudgslb```
-4. Navigate to 
+4. Ensure the directory *mutlicloudgslb* has been copied. `ls`
+5. Navigate into the AWS directory. `cd multicloudgslb/AWS`
+6. Make all shell scripts executable. `sudo chmod +x *.sh`
+
+### Running the Setup Script
+The setup script will complete the following:
+- Install AWS command line interface
+- Install Azure command line interface
+- Install jq
+- Install pwgen
+- Authenticate into AWS account
+- Authenticate into Azure account
+
+1. Run the cloud setup script. `./setup.sh`
+
+
 

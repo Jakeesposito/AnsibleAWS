@@ -26,6 +26,6 @@ This section requires PuTTY and PuTTYgen which can be downloaded on their [websi
 
 ### Download Script Files
 1. Once you are logged in, update the Ubuntu Server instance. 
-``` sudo apt-get update ```
+.. ``` sudo apt-get update ```
 
 

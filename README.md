@@ -13,5 +13,10 @@
 2. Click *Launch Instance*.
 3. Find *Ubuntu Server 16.04 LTS (HVM)* and launch VM on a *t2.micro* instance.
 4. Select *Create a New Key Pair* and enter the name *AWSPrivateKey*. Download the key pair .PEM file.
-5. 
+
+### SSH to Ubuntu Server with PuTTY
+This section requires PuTTY and PuTTYgen which can be downloaded on their [website](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
+1. Open *PuTTYgen* on your machine and click *Load*.
+2. Navigate to the saved AWS .PEM file.
+3. 
 

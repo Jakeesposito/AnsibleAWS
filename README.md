@@ -42,7 +42,7 @@ This section requires PuTTY and PuTTYgen which can be downloaded on their [websi
 2. Make scripts executable. `sudo chmod +x *.sh`
 3. Run the cloud setup script. `./setup.sh`
 
-This script will complete the following:
+> This script will complete the following:
 - Install AWS command line interface
 - Install Azure command line interface
 - Install jq
@@ -56,7 +56,7 @@ This script will complete the following:
 2. Make scripts executable. `sudo chmod +x *.sh`
 3. Run the VPC setup script. `./awsvpc.sh`
 
-This script will complete the following:
+> This script will complete the following:
 - Create VPC 10.0.0.0/16
 - Create client subnet 10.0.1.0/24
 - Create server subnet 10.0.2.0/24

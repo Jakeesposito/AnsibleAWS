@@ -22,7 +22,7 @@ This section requires PuTTY and PuTTYgen which can be downloaded on their [websi
 4. Open *PuTTY*.
 5. Enter your public IPv4 host name (ex. `ec2-18-222-152-136.us-east-2.compute.amazonaws.com`).
 6. Navigate to *Connection*-->*SSH*-->*Auth* and click *Browse* to find your .PPK file.
-7. Click *Open* to launch the session and login with username *Ubuntu*.
+7. Click *Open* to launch the session and login with username *ubuntu*.
 
 ### Download Script Files
 1. Update the Ubuntu Server instance. ```sudo apt-get update```

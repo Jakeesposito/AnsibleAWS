@@ -17,6 +17,8 @@
 ### SSH to Ubuntu Server with PuTTY
 This section requires PuTTY and PuTTYgen which can be downloaded on their [website](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
 1. Open *PuTTYgen* on your machine and click *Load*.
-2. Navigate to the saved AWS .PEM file.
-3. 
+2. Navigate to the saved AWS .PEM file and click *Open*.
+3. Click *Save private key* to save the converted .PPK file.
+4. Open *PuTTY*.
+5.
 

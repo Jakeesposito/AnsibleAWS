@@ -20,5 +20,10 @@ This section requires PuTTY and PuTTYgen which can be downloaded on their [websi
 2. Navigate to the saved AWS .PEM file and click *Open*.
 3. Click *Save private key* to save the converted .PPK file.
 4. Open *PuTTY*.
-5.
+5. Enter your public IPv4 host name (ex. `ec2-18-222-152-136.us-east-2.compute.amazonaws.com`).
+6. Navigate to *Connection*-->*SSH*-->*Auth* and click *Browse* to find your .PPK file.
+7. Click *Open* to launch the session and login with username *Ubuntu*.
+
+### Download Script Files
+
 

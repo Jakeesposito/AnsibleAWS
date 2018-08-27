@@ -34,5 +34,5 @@ echo ${mag}Finalizing...
 echo .${end}
 sudo apt-get update > /dev/null 2>&1
 sleep 3
-echo ${grn}ANSIBLE INSTALLATION AND CONFIGURATION COMPLETE${end}
+echo ${grn}[COMPLETE]${end}
 sleep 1

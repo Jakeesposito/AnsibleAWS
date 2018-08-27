@@ -56,38 +56,17 @@ echo ${mag}Creating Unique Key Vault...${end}
 vault_name=$(pwgen -n -B 12 1)
 az keyvault create --resource-group AnsibleResourceGroup --name ${vault_name} --location 'eastus' > /dev/null
 echo ${grn}[COMPLETE]${end}
-sleep 2
-printf "\n"
-printf "\n"
+
 #az ad sp create-for-rbac --name AnsibleServiceAccount --password AnsibleAccount1 --create-cert --cert AnsibleCert --keyvault ${vault_name} | jq
 echo ${grn}[AZURE CONFIGURATION COMPLETE]${end}
-printf "\n"
-printf "\n"
-sleep 2
+
 # Authenticate into AWS
 echo ${mag}Enter AWS Access Keys Below...${cyn}
 printf "\n"
 aws configure
-printf "\n"
 echo ${mag}Testing AWS Connection...${end}
-sleep 2
 echo ${grn}[COMPLETE]${end}
-sleep 3
 printf "\n"
 printf "\n"
-echo ${grn}...........................................................${end}
-echo ${grn}...........................................................${end}
-echo ${grn}.................${grn}SERVER SETUP COMPLETE${grn}.....................${end}
-echo ${grn}...........................................................${end}
-echo ${grn}...........................................................${end}
-sleep 1
-printf "\n"
-printf "\n"
-echo ${yel}...........................................................${end}
-echo ${yel}...........................................................${end}
-echo ${yel}...................${grn}CREATING AWS VPC${yel}........................${end}
-echo ${yel}...........................................................${end}
-echo ${yel}...........................................................${end}
-printf "\n"
-printf "\n"
-/bin/bash /usr/local/bin/multicloudgslb/AWS/vpc2.sh
+sleep 2
+

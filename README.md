@@ -38,10 +38,6 @@ This section requires PuTTY and PuTTYgen which can be downloaded on their [websi
 
 
 ### Running the Cloud Setup Script
-1. Navigate into the Setup directory. `cd multicloudgslb/Setup`
-2. Make scripts executable. `sudo chmod +x *.sh`
-3. Run the cloud setup script. `./setup.sh`
-
 >Actions:
 >- Install AWS command line interface
 >- Install Azure command line interface
@@ -49,6 +45,11 @@ This section requires PuTTY and PuTTYgen which can be downloaded on their [websi
 >- Install pwgen
 >- Authenticate into AWS account
 >- Authenticate into Azure account
+
+1. Navigate into the Setup directory. `cd multicloudgslb/Setup`
+2. Make scripts executable. `sudo chmod +x *.sh`
+3. Run the cloud setup script. `./setup.sh`
+
 
 
 ### Running the VPC Script

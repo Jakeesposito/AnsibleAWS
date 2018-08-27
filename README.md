@@ -25,7 +25,7 @@ This section requires PuTTY and PuTTYgen which can be downloaded on their [websi
 7. Click *Open* to launch the session and login with username *Ubuntu*.
 
 ### Download Script Files
-1. Once you are logged in, update the Ubuntu Server instance. 
-.. ``` sudo apt-get update ```
+1. Update the Ubuntu Server instance using ```sudo apt-get update```
+2. Navigate to the local script directory ```cd /usr/local/bin```
 
 

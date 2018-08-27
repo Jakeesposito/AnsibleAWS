@@ -15,7 +15,7 @@
 4. Select *Create a New Key Pair* and enter the name *AWSPrivateKey*. Download the key pair .PEM file.
 
 ### SSH to Ubuntu Server with PuTTY
-This section requires PuTTY and PuTTYgen which can be downloaded on their [website](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
+This section requires PuTTY and PuTTYgen which can be downloaded on their [website](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html). Note that most package installations of PuTTY also include PuTTYgen.
 1. Open *PuTTYgen* on your machine and click *Load*.
 2. Navigate to the saved AWS .PEM file and click *Open*.
 3. Click *Save private key* to save the converted .PPK file.
@@ -25,5 +25,7 @@ This section requires PuTTY and PuTTYgen which can be downloaded on their [websi
 7. Click *Open* to launch the session and login with username *Ubuntu*.
 
 ### Download Script Files
+1. Once you are logged in, update the Ubuntu Server instance. 
+``` sudo apt-get update ```
 
 

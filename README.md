@@ -38,7 +38,7 @@ This section requires PuTTY and PuTTYgen which can be downloaded on their [websi
 
 
 ### Running the Cloud Setup Script
->Actions:
+>'setup.sh' Actions:
 >- Install AWS command line interface
 >- Install Azure command line interface
 >- Install jq
@@ -50,14 +50,8 @@ This section requires PuTTY and PuTTYgen which can be downloaded on their [websi
 2. Make scripts executable. `sudo chmod +x *.sh`
 3. Run the cloud setup script. `./setup.sh`
 
-
-
 ### Running the VPC Script
-1. Navigate to AWS directory. `cd /usr/local/bin/multicloudgslb/AWS`
-2. Make scripts executable. `sudo chmod +x *.sh`
-3. Run the VPC setup script. `./awsvpc.sh`
-
->Actions:
+>'awsvpc.sh' Actions:
 >- Create VPC 10.0.0.0/16
 >- Create client subnet 10.0.1.0/24
 >- Create server subnet 10.0.2.0/24
@@ -65,17 +59,23 @@ This section requires PuTTY and PuTTYgen which can be downloaded on their [websi
 >- Create route tables
 >- Create security groups
 
+1. Navigate to AWS directory. `cd /usr/local/bin/multicloudgslb/AWS`
+2. Make scripts executable. `sudo chmod +x *.sh`
+3. Run the VPC setup script. `./awsvpc.sh`
+
 
 ### Running the Ansible Setup Script
-1. Navigate to Ansible directory. `cd /usr/local/bin/multicloudgslb/Ansible`
-2. Make scripts executable. `sudo chmod +x *.sh`
-3. Run the VPC setup script. `./setup.sh`
-
->Actions:
+>'ansiblesetup.sh' Actions:
 >- Launch EC2 Ubuntu Server instance in management subnet
 >- Download Ansible dependencies
 >- Add Ansible repositories
 >- Download Ansible
+
+1. Navigate to Ansible directory. `cd /usr/local/bin/multicloudgslb/Ansible`
+2. Make scripts executable. `sudo chmod +x *.sh`
+3. Run the VPC setup script. `./setup.sh`
+
+
 
 
 

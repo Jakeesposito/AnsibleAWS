@@ -49,13 +49,9 @@ This section requires PuTTY and PuTTYgen which can be downloaded on their [websi
 1. Navigate into the Setup directory. `cd multicloudgslb/Setup`
 2. Make scripts executable. `sudo chmod +x *.sh`
 3. Run the cloud setup script. `./setup.sh`
-
-Example for AWS Authentication:
-AWS Access Key ID: `AKIAIL3HTB2BMVPDQADQ`
-AWS Secret Acess Key: `UkmiGDv9RgXORS727A28Bvf5bVCqqfu5+P9o/5Hi`
-Default Region Name: `us-east-2`
-Default output format: `[Enter]`
-
+4. When prompted for AWS credentials, enter Access Key ID and Secret Access Key for the IAM user.
+5. Choose a default region. ex. `us-east-2`
+6. Hit enter or type `json` when prompted for *Default Output Format`.
 
 ### Running the VPC Script
 >'awsvpc.sh' Actions:

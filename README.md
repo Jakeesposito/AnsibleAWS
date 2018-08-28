@@ -51,7 +51,7 @@ This section requires PuTTY and PuTTYgen which can be downloaded on their [websi
 3. Run the cloud setup script. `./setup.sh`
 4. When prompted for AWS credentials, enter Access Key ID and Secret Access Key for the IAM user.
 5. Choose a default region. ex. `us-east-2`
-6. Hit enter or type `json` when prompted for *Default Output Format`.
+6. Hit enter or type `json` when prompted for *Default Output Format*.
 
 ### Running the VPC Script
 >'awsvpc.sh' Actions:

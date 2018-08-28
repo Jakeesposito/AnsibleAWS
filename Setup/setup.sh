@@ -41,7 +41,6 @@ az provider register -n Microsoft.KeyVault &> /dev/null
 echo ${grn}[COMPLETE]${end}
 echo ${mag}Registering...${end}
 reg_state=$(az provider show -n Microsoft.KeyVault | jq '.registrationState' | tr -d '"')
-sleep 1
 
 # Wait for Registration
 while [ "$reg_state" != "Registered" ]
@@ -57,7 +56,7 @@ vault_name=$(pwgen -n -B 12 1)
 az keyvault create --resource-group AnsibleResourceGroup --name ${vault_name} --location 'eastus' > /dev/null
 echo ${grn}[COMPLETE]${end}
 
-#az ad sp create-for-rbac --name AnsibleServiceAccount --password AnsibleAccount1 --create-cert --cert AnsibleCert --keyvault ${vault_name} | jq
+az ad sp create-for-rbac --name AnsibleServiceAccount --password AnsibleAccount1 --keyvault ${vault_name} --cert AnsibleCert  --create-cert | jq
 echo ${grn}[AZURE CONFIGURATION COMPLETE]${end}
 
 # Authenticate into AWS
@@ -66,7 +65,5 @@ printf "\n"
 aws configure
 echo ${mag}Testing AWS Connection...${end}
 echo ${grn}[COMPLETE]${end}
-printf "\n"
-printf "\n"
-sleep 2
+
 

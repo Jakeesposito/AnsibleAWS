@@ -56,7 +56,7 @@ vault_name=$(pwgen -n -B 12 1)
 az keyvault create --resource-group AnsibleResourceGroup --name ${vault_name} --location 'eastus' > /dev/null
 echo ${grn}[COMPLETE]${end}
 
-az ad sp create-for-rbac --name AnsibleServiceAccount --password AnsibleAccount1 --keyvault ${vault_name} --cert AnsibleCert  --create-cert | jq
+az ad sp create-for-rbac --name AnsibleServiceAccount --password AnsibleAccount1 --keyvault ${vault_name} --cert AnsibleCert  --create-cert
 echo ${grn}[AZURE CONFIGURATION COMPLETE]${end}
 
 # Authenticate into AWS
@@ -64,6 +64,6 @@ echo ${mag}Enter AWS Access Keys Below...${cyn}
 printf "\n"
 aws configure
 echo ${mag}Testing AWS Connection...${end}
-echo ${grn}[COMPLETE]${end}
+echo ${grn}[AMAZON WEB SERVICES CONFIGURATION COMPLETE]${end}
 
 

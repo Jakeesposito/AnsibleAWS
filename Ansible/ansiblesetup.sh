@@ -16,7 +16,6 @@ echo ${cyn}EC2 Instance ${grn}Ansible_ControlMachine${cyn} Created
 printf "\n"
 echo ${mag}Waiting for Public DNS...
 ans_dns=$(aws ec2 describe-instances --instance-ids ${ans_instance_id} | jq .[] | jq .[] | jq '.Instances' | jq .[] | jq '.PublicDnsName' | tr -d '"')
-p
 echo Ansible Control Machine can be Accessed via ssh at 
 printf "\n"
 echo ${mag}${ans_dns}${cyn}

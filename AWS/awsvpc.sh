@@ -49,6 +49,7 @@ printf "\n"
 # Create Management Subnet
 echo Creating Management Subnet...
 m_subnet_id=$(aws ec2 create-subnet --vpc-id ${vpc_id} --cidr-block 10.0.3.0/24 | jq '.Subnet.SubnetId' | tr -d '"')
+export m_subnet_id
 aws ec2 create-tags --resources "$m_subnet_id" --tags Key=Name,Value=Management_Subnet
 echo ${cyn}Management Subnet ${grn}10.0.3.0/24${cyn} Created with ID ${grn}${m_subnet_id}${cyn}
 echo ${complete}
@@ -74,6 +75,7 @@ printf "\n"
 # Create Security Group and Enable SSH
 echo Creating Security Group...
 sg_id=$(aws ec2 create-security-group --group-name ssh_sg --vpc-id ${vpc_id} --description "allow ssh" | jq '.GroupId' | tr -d '"')
+echo sg_id
 aws ec2 create-tags --resources ${sg_id} --tags Key=Name,Value=ssh_sg
 aws ec2 authorize-security-group-ingress --group-id ${sg_id} --protocol tcp --port 22 --cidr 0.0.0.0/0
 echo ${complete}

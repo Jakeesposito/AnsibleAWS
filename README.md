@@ -50,6 +50,13 @@ This section requires PuTTY and PuTTYgen which can be downloaded on their [websi
 2. Make scripts executable. `sudo chmod +x *.sh`
 3. Run the cloud setup script. `./setup.sh`
 
+Example for AWS Authentication:
+AWS Access Key ID: `AKIAIL3HTB2BMVPDQADQ`
+AWS Secret Acess Key: `UkmiGDv9RgXORS727A28Bvf5bVCqqfu5+P9o/5Hi`
+Default Region Name: `us-east-2`
+Default output format: `[Enter]`
+
+
 ### Running the VPC Script
 >'awsvpc.sh' Actions:
 >- Create VPC 10.0.0.0/16

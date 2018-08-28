@@ -59,14 +59,18 @@ echo ${grn}[COMPLETE]${end}
 # Create Service Principal Account
 az ad sp create-for-rbac --name AnsibleServiceAccount --password Citrix123! 
 echo ${grn}[AZURE CONFIGURATION COMPLETE]${end}
+printf "\n"
 
 # Authenticate into AWS
-echo ${mag}Enter AWS Access Keys Below...${cyn}
-printf "\n"
+echo ${mag}Enter AWS Access Keys Below...
 aws configure
+printf "\n"
 echo ${mag}Testing AWS Connection...${end}
+echo ${grn}[COMPLETE]
 echo ${grn}[AMAZON WEB SERVICES CONFIGURATION COMPLETE]${end}
 sleep 1
 printf "\n"
 echo ${grn}[SCRIPT COMPLETE]${end}
-
+printf "\n"
+printf "\n"
+printf "\n"

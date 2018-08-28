@@ -38,7 +38,7 @@ This section requires PuTTY and PuTTYgen which can be downloaded on their [websi
 
 
 ### Running the Cloud Setup Script
->'setup.sh' Actions:
+>**setup.sh:**
 >- Install AWS command line interface
 >- Install Azure command line interface
 >- Install jq

@@ -65,10 +65,8 @@ printf "\n"
 echo ${mag}Enter AWS Access Keys Below...
 aws configure
 printf "\n"
-echo ${mag}Testing AWS Connection...${end}
-echo ${grn}[COMPLETE]
 echo ${grn}[AMAZON WEB SERVICES CONFIGURATION COMPLETE]${end}
-sleep 1
+sleep 3
 printf "\n"
 echo ${grn}[SCRIPT COMPLETE]${end}
 printf "\n"

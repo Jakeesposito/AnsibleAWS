@@ -50,11 +50,11 @@ This section requires PuTTY and PuTTYgen which can be downloaded on their [websi
 2. Make scripts executable. `sudo chmod +x *.sh`
 3. Run the cloud setup script. `./setup.sh`
 4. When prompted for AWS credentials, enter Access Key ID and Secret Access Key for the IAM user.
-5. Choose a default region. Ex. `us-east-2`
+5. Choose a default region. `us-east-2`
 6. Hit *Enter* or type `json` when prompted for *Default Output Format*.
 
 ### Running the VPC Script
->'awsvpc.sh' Actions:
+>**awsvpc.sh:**
 >- Create VPC 10.0.0.0/16
 >- Create client subnet 10.0.1.0/24
 >- Create server subnet 10.0.2.0/24
@@ -68,7 +68,7 @@ This section requires PuTTY and PuTTYgen which can be downloaded on their [websi
 
 
 ### Running the Ansible Setup Script
->'ansiblesetup.sh' Actions:
+>**ansiblesetup.sh:**
 >- Launch EC2 Ubuntu Server instance in management subnet
 >- Download Ansible dependencies
 >- Add Ansible repositories

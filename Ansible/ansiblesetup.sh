@@ -10,6 +10,8 @@ end=$'\e[0m'
 
 # Deploying VM for Ansible Control Machine
 echo Deploying VM for Ansible Control Machine...
+echo TEST ${sg_id}
+echo TEST ${m_subnet_id}
 ans_instance_id=$(aws ec2 run-instances --image-id ami-5e8bb23b --count 1 --instance-type t2.micro --security-group-ids ${sg_id} --key-name AWSPrivateKey --subnet-id ${m_subnet_id} --associate-public-ip-address | jq '.Instances' | jq .[] | jq '.InstanceId' | tr -d '"')
 aws ec2 create-tags --resources "$ans_instance_id" --tags Key=Name,Value=Ansible_ControlMachine
 echo ${cyn}EC2 Instance ${grn}Ansible_ControlMachine${cyn} Created

@@ -28,7 +28,7 @@ This section requires PuTTY and PuTTYgen which can be downloaded on their [websi
 7. Click *Open* to launch the session and login with username *ubuntu*.
 
 
-### Download Script Files
+### Download Github Repository
 1. Update the Ubuntu Server instance. ```sudo apt-get update```
 2. Navigate to the local *bin* directory. ```cd /usr/local/bin```
 3. Copy Git repository locally. ```sudo git clone https://www.github.com/jakeesposito/multicloudgslb```

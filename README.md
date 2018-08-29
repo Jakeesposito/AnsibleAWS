@@ -48,7 +48,7 @@ This section requires PuTTY and PuTTYgen which can be downloaded on their [websi
 
 1. Navigate into the Setup directory. `cd multicloudgslb/Setup`
 2. Make scripts executable. `sudo chmod +x *.sh`
-3. Run the cloud setup script. `./setup.sh`
+3. Run the cloud setup script. `source setup.sh`
 4. When prompted for AWS credentials, enter Access Key ID and Secret Access Key for the IAM user.
 5. Choose a default region. `us-east-2`
 6. Hit *Enter* or type `json` when prompted for *Default Output Format*.
@@ -64,7 +64,7 @@ This section requires PuTTY and PuTTYgen which can be downloaded on their [websi
 
 1. Navigate to AWS directory. `cd /usr/local/bin/multicloudgslb/AWS`
 2. Make scripts executable. `sudo chmod +x *.sh`
-3. Run the VPC setup script. `./awsvpc.sh`
+3. Run the VPC setup script. `source awsvpc.sh`
 
 
 ### Running the Ansible Setup Script
@@ -76,7 +76,7 @@ This section requires PuTTY and PuTTYgen which can be downloaded on their [websi
 
 1. Navigate to Ansible directory. `cd /usr/local/bin/multicloudgslb/Ansible`
 2. Make scripts executable. `sudo chmod +x *.sh`
-3. Run the VPC setup script. `./setup.sh`
+3. Run the VPC setup script. `source setup.sh`
 
 
 

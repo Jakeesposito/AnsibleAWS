@@ -25,3 +25,5 @@ printf "\n"
 echo ${mag}Ansible Control Machine can be Accessed via ssh at 
 printf "\n"
 echo ${grn2}${ans_dns}${mag}
+printf "\n"
+printf "\n"

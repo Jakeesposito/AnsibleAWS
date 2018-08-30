@@ -20,15 +20,8 @@ echo ${mag}Waiting for Public DNS...
 ans_dns=$(aws ec2 describe-instances --instance-ids ${ans_instance_id} | jq .[] | jq .[] | jq '.Instances' | jq .[] | jq '.PublicDnsName' | tr -d '"')
 echo ${grn}[COMPLETE]${mag}
 printf "\n"
-
-# Connect to Ansible Machine
-
-
-
-
-
 printf "\n"
 printf "\n"
-echo Ansible Control Machine can be Accessed via ssh at 
+echo ${mag}Ansible Control Machine can be Accessed via ssh at 
 printf "\n"
 echo ${grn2}${ans_dns}${mag}

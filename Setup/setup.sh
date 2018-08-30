@@ -81,3 +81,7 @@ echo ${grn}[SCRIPT COMPLETE]${end}
 printf "\n"
 printf "\n"
 printf "\n"
+
+# Call Script
+cd /usr/local/bin/multicloudgslb/AWS
+source awsvpc.sh

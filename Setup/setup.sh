@@ -7,6 +7,15 @@ cyn=$'\e[1;36m'
 yel=$'\e[1;33m'
 end=$'\e[0m'
 
+# Initializing
+echo ${mag}Initializing...${end}
+cd /usr/local/bin/multicloudgslb/AWS
+sudo chmod +x *.sh
+cd /usr/local/bin/multicloudgslb/Ansible
+sudo chmod +x *.sh
+cd /usr/local/bin/multicloudgslb/Setup
+echo ${grn}[COMPLETE]${end}
+
 #Install AWS CLI, Jq for json, and pwgen
 sudo apt-get update > /dev/null
 echo ${mag}Installing Amazon Web Services CLI...${end}

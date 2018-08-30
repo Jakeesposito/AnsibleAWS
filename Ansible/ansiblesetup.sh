@@ -3,7 +3,7 @@
 #Text Color Variables
 red=$'\e[1;31m'
 grn=$'\e[1;32m'
-grn2=$'\e[1;46'
+grn2=$'\e[1;46m'
 blu=$'\e[1;34m'
 mag=$'\e[1;35m'
 cyn=$'\e[1;36m'
@@ -21,9 +21,10 @@ ans_dns=$(aws ec2 describe-instances --instance-ids ${ans_instance_id} | jq .[] 
 echo ${grn}[COMPLETE]${mag}
 printf "\n"
 printf "\n"
-printf "\n"
 echo ${mag}Ansible Control Machine can be Accessed via ssh at 
 printf "\n"
 echo ${grn2}${ans_dns}${mag}
+printf "\n"
+printf "\n"
 printf "\n"
 printf "\n"

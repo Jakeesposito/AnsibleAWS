@@ -3,7 +3,7 @@
 #Text Color Variables
 red=$'\e[1;31m'
 grn=$'\e[1;32m'
-grn2=$'\e[1;46m'
+grn2=$'\e[1;93m'
 blu=$'\e[1;34m'
 mag=$'\e[1;35m'
 cyn=$'\e[1;36m'
@@ -26,5 +26,6 @@ printf "\n"
 echo ${grn2}${ans_dns}${mag}
 printf "\n"
 printf "\n"
+echo ${grn}[SCRIPT COMPLETE]${mag}
 printf "\n"
 printf "\n"

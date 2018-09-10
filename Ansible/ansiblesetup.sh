@@ -28,6 +28,17 @@ sudo apt-get update > /dev/null
 sudo apt-get install azure-cli > /dev/null
 echo ${grn}[COMPLETE]${end}
 
+# Authenticate into Azure
+echo ${mag}Authenticating into Azure...${end}
+ten_id=$(az login | jq .[] | jq '.tenantId' | tr -d '"')
+echo ${grn}[COMPLETE]${end}
+echo ${mag}Creating Service Principal Account...${end}
+az group create -n 'AnsibleResourceGroup' -l 'eastus' > /dev/null
+az provider register -n Microsoft.KeyVault &> /dev/null
+echo ${grn}[COMPLETE]${end}
+echo ${mag}Registering...${end}
+reg_state=$(az provider show -n Microsoft.KeyVault | jq '.registrationState' | tr -d '"')
+
 # Deploying VM for Ansible Control Machine
 echo ${mag}Deploying VM for Ansible Control Machine...
 

@@ -9,6 +9,18 @@ mag=$'\e[1;35m'
 cyn=$'\e[1;36m'
 end=$'\e[0m'
 
+# Install AWS CLI, jq,
+sudo apt-get update > /dev/null
+echo ${mag}Installing Amazon Web Services CLI...${end}
+sudo apt-get -y install awscli > /dev/null
+echo ${grn}[COMPLETE]${end}
+echo ${mag}Installing jq...${end}
+sudo apt-get -y install jq > /dev/null
+echo ${grn}[COMPLETE]${end}
+
+# Install Azure CLI
+
+
 # Deploying VM for Ansible Control Machine
 echo ${mag}Deploying VM for Ansible Control Machine...
 

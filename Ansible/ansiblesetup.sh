@@ -26,6 +26,6 @@ printf "\n"
 echo ${grn2}${ans_dns}${mag}
 printf "\n"
 printf "\n"
-echo ${grn}[SCRIPT COMPLETE]${mag}
+echo ${grn}[SCRIPT COMPLETE]${end}
 printf "\n"
 printf "\n"

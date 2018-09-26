@@ -87,4 +87,9 @@ sleep 2
 printf "\n"
 echo ${grn}[SCRIPT COMPLETE]${end}
 
+# Call Ansible VM Setup
+# Call Script
+cd /usr/local/bin/multicloudgslb/Ansible
+source .sh
+
 
